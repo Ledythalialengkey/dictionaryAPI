@@ -4,17 +4,25 @@
     Content[]? result = ViewData["results"] as Content[];
 }
 
-
-
-
-
 <br/>
-<div>
-  <button href="" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addNewModal">
-    Add New
-  </button>
 
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <div>
+      <button href="" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addNewModal">
+        Add New
+      </button>
+    </div>
+  </div>
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 d-flex">
+    <input class="form-control me-2" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+    <input class="btn btn-light" type="submit" value="Search">
+  </div>
 </div>
+
 <table class="table border mt-3">
   <thead class="thead-dark">
     <tr>
@@ -41,7 +49,7 @@
             <td>@x.contentAudio</td>
             <td>
                   <a href="" class="btn btn-light text-dark"><i class="bi bi-pen"></i></a>
-                  <a href="" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                  <a href="http://localhost:5000/content/deletecontent?id=@x.Id" class="btn btn-danger"><i class="bi bi-trash"></i></a>
             </td>
           </tr>
            
@@ -52,45 +60,13 @@
 </table>
 
 
-@* Modal *@
-<!-- Button trigger modal -->
-<!-- Modal -->
-<form action="">
-  <div class="modal fade" id="addNewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        
-        <div class="modal-body">
-          
-              @* Form *@
-                <div class="mb-3">
-                  <label for="ContentFrom" class="form-label">Kata</label>
-                  <input type="text" class="form-control" id="ContentFrom" placeholder="input kata" required>
-                </div>
 
-                <div class="mb-3">
-                  <label for="ContentTo" class="form-label">Terjemahan</label>
-                  <input type="text" class="form-control" id="ContentTo" placeholder="input terjemahan" required>
-                </div>
+<br/>
 
-                <div class="mb-3">
-                  <label for="ContentAudio" class="form-label">Audio</label>
-                  <input class="form-control" type="file" id="ContentAudio" required>
-                </div>
-                @* /Form *@
-          
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</form>
+@using (Html.BeginForm("PostContent", "Content",FormMethod.Post)){
+  @await Html.PartialAsync("_AddNewModal.cshtml")
+}
+    
+
+
+

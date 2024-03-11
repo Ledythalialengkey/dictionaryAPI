@@ -35,10 +35,9 @@ namespace dctrestapi.Controllers
             var allContents = await _context.Contents.ToListAsync(); 
             
             var filteredContents = allContents.Where(content =>
-                content.contentFrom.Contains(searchString)
+                 content.contentFrom != null && content.contentFrom.Contains(searchString)
             );
-            
-            return Ok(filteredContents);
+            return Ok(filteredContents);            
         }
 
         // GET: api/Contents/5
@@ -98,7 +97,7 @@ namespace dctrestapi.Controllers
         }
 
         // DELETE: api/Contents/5
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteContent(long id)
         {
             var content = await _context.Contents.FindAsync(id);
@@ -106,7 +105,7 @@ namespace dctrestapi.Controllers
             {
                 return NotFound();
             }
-
+            Console.WriteLine($"ID : {id}");
             _context.Contents.Remove(content);
             await _context.SaveChangesAsync();
 

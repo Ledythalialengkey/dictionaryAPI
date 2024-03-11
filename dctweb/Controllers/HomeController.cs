@@ -1,12 +1,6 @@
 using dctweb.Models;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 
 
@@ -25,7 +19,7 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        HttpResponseMessage response = await client.GetAsync("http://localhost:5090/api/Contents");
+        using HttpResponseMessage response = await client.GetAsync("http://localhost:5003/api/Contents");
         string result = await response.Content.ReadAsStringAsync(); 
         Content[]? results = JsonConvert.DeserializeObject<Content[]>(result);
         ViewData["results"] = results;
