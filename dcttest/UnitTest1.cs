@@ -1,5 +1,5 @@
 namespace dcttest;
-
+using dctstorefile;
 public class Tests
 {
     [SetUp]
@@ -8,8 +8,9 @@ public class Tests
     }
 
     [Test]
-    public void Test1()
+    public void ShouldCanRegisterTheDirPathAndSourcePath()
     {
-        Assert.Pass();
+           DctStoreFile dct = new("halo","hola");
+           Console.WriteLine(dct.CheckInfo());
     }
 }
