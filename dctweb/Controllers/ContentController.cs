@@ -33,7 +33,9 @@ public class ContentController : Controller
         string? content = await response.Content.ReadAsStringAsync();
         return content;
     }
-    public async Task<ActionResult> PostContent(string cFrom, string cTo, string cDesc, string cAudio){
+    public async Task<ActionResult> PostContent(string cFrom, string cTo, string cDesc){
+         
+         Console.WriteLine(cTo);
          var postMsg = new Content{
             contentFrom = cFrom,
             contentTo = cTo,
