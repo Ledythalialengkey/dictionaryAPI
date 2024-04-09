@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using dctweb.Models;
 using System.Text;
 using Newtonsoft.Json;
+using dctstorefile;
 
 namespace dctweb.Controllers;
 
@@ -33,14 +34,30 @@ public class ContentController : Controller
         string? content = await response.Content.ReadAsStringAsync();
         return content;
     }
-    public async Task<ActionResult> PostContent(string cFrom, string cTo, string cDesc){
+    public async Task<ActionResult> PostContent(string cFrom, string cTo, string cDesc, IFormFile cAudio){
          
-         Console.WriteLine(cTo);
+         DctStoreFile dct = new DctStoreFile();
+         dct.SetDirPath("./AudioFile");
+         dct.CreateDirectory();
+         string uiidName = await dct.GenerateFileName(cAudio.FileName);
+         var filePath = Path.Combine(dct.GetDirPath(),uiidName);
+         
+         try{
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await cAudio.CopyToAsync(stream);
+            }
+         }
+         catch{
+            throw;
+         }
+
+
          var postMsg = new Content{
             contentFrom = cFrom,
             contentTo = cTo,
             contentDesc = cDesc,
-            contentAudio = "cAudio",
+            contentAudio = uiidName,
             createdAt = DateTime.Now
         };
         string? json = JsonConvert.SerializeObject(postMsg);

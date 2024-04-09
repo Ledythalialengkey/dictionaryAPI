@@ -48,7 +48,7 @@
             <td>@x.contentTo</td>
             <td>@x.contentAudio</td>
             <td>
-                  <a href="" class="btn btn-light text-dark"><i class="bi bi-pen"></i></a>
+                  <a href="" class="btn btn-light text-dark" data-bs-toggle="modal" data-bs-target="#editModal"><i class="bi bi-pen"></i></a>
                   <a href="http://localhost:5000/content/deletecontent?id=@x.Id" class="btn btn-danger"><i class="bi bi-trash"></i></a>
             </td>
           </tr>
@@ -63,8 +63,11 @@
 
 <br/>
 
-@using (Html.BeginForm("PostContent", "Content",FormMethod.Post)){
+@using (Html.BeginForm("PostContent", "Content",FormMethod.Post,  new { enctype = "multipart/form-data" })){
   @await Html.PartialAsync("_AddNewModal.cshtml")
+}
+@using (Html.BeginForm("PostContent", "Content",FormMethod.Post,  new { enctype = "multipart/form-data" })){
+  @await Html.PartialAsync("_EditModal.cshtml")
 }
     
 
