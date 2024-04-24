@@ -68,4 +68,13 @@ public class Tests
         bool result = dct.StoreFile();
         Assert.True(result);
     }
+    [Test]
+    public async Task ShouldBeAbleToGenerateTheUiidFileName(){
+        DctStoreFile dct = new();
+        dct.SetDirPath("./CreatedDir");
+        dct.SetSrcPath("./SrcPath/mockFile.mp4");
+        string output = await dct.GenerateFileName("test4");
+        Console.WriteLine(output);
+        Assert.NotNull(output);
+    }
 }

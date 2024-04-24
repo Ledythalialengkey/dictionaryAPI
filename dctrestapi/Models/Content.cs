@@ -9,6 +9,10 @@ public class Content {
     public DateTime createdAt { get; set; }
     public DateTime updatedAt { get; set; }
 }
+public class FileUploadModel
+{
+    public IFormFile? File { get; set; }
+}
 
 public class User{
     public long Id { get; set;}

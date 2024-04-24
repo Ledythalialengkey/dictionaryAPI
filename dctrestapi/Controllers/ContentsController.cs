@@ -95,6 +95,47 @@ namespace dctrestapi.Controllers
 
             return CreatedAtAction("GetContent", new { id = content.Id }, content);
         }
+        
+        // Upload File
+        [HttpPost("Upload")]
+        public async Task<ActionResult> Upload(FileUploadModel fileModel){
+            if (fileModel.File == null || fileModel.File.Length == 0)
+            return BadRequest("No file uploaded.");
+
+            var directoryPath = "./fileAudio"; // Your desired directory path
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(fileModel.File.FileName)}";
+            var filePath = Path.Combine(directoryPath, fileName); 
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+               await fileModel.File.CopyToAsync(stream);
+            }
+            return Ok(fileName);
+        }
+
+    // get audio
+    [HttpGet("audio/{audioName}")]
+    public IActionResult GetAudioFile(string audioName)
+    {
+        var _fileAudioFolderPath = "./fileAudio";
+        var filePath = Path.Combine(_fileAudioFolderPath, audioName);
+        if (System.IO.File.Exists(filePath))
+        {
+            var fileBytes = System.IO.File.ReadAllBytes(filePath);
+            return File(fileBytes, "application/octet-stream", audioName);
+        }
+        else
+        {
+            return NotFound();
+        }
+    }
 
         // DELETE: api/Contents/5
         [HttpDelete("delete/{id}")]

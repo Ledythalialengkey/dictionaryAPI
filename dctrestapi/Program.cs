@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using dctrestapi.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +15,14 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "DCT Api", Version = "v1" });
 });
+var allowSpec = "myspec";
+builder.Services.AddCors(options => {
+    options.AddPolicy(name:allowSpec, policy =>{
+        policy.WithOrigins("http://localhost:3000")
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
 
 
 var app = builder.Build();
@@ -24,13 +31,14 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "DCT Api");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "DCT Api");
 });
-
-
 
 app.UseHttpsRedirection();
 
+// Use CORS
+
+app.UseCors(allowSpec);
 app.UseAuthorization();
 
 app.MapControllers();

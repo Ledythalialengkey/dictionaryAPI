@@ -7,7 +7,7 @@ function App(){
     <>
       <Container className='mt-3 p-3'>
         <Navtop/>
-        <TableData/>
+          <TableData/>
       </Container>
     </>
   );

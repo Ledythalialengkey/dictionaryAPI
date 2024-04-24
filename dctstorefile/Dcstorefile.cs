@@ -98,6 +98,19 @@ namespace dctstorefile{
             }
             throw new Exception("src path not defined");
         }
+        public async Task<string> GenerateFileName(string fileName){
+            await Task.Delay(100);
+            try{
+                if(fileName!=null){
+                    string uiidName = $"{Guid.NewGuid().ToString()}-{DateTime.Now.ToString("yyyyMMddHHmmss")}-{fileName}";
+                    return uiidName;
+                }
+            }
+            catch{
+                throw;
+            }
+            throw new Exception("File to generate UIID Name ");
+        }
 
     }
 }
