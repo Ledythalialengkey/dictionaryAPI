@@ -8,11 +8,18 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import AddNew from './AddNew';
 import BySearch from './BySearch';
+import EditData from './EditData'
 
 
 
 
 function TableData() {
+    // edit visibility
+    const [isEdit, setIsEdit] = useState(false);
+    const handleEditVisibility = () => {
+      setIsEdit(!isEdit)
+    }
+  
     // add new visibility
     const [isAddNew, setAddNew] = useState(false);
     const addNewVisibility = () => {        
@@ -62,12 +69,13 @@ function TableData() {
     
     return (        
         <Container className='mt-5'>
-            <Button onClick={addNewVisibility} className={!isAddNew ? 'btn-primary' : 'btn-danger'}>
+            
+            <Button onClick={addNewVisibility} className={!isAddNew ? 'btn-primary' : 'btn-danger'} disabled={isEdit ? true:false}>
                 {isAddNew ? 'Batal' : 'Tambah data'}
             </Button> <hr/>
            
            
-
+            {isEdit && <EditData handleEditVisibility={handleEditVisibility}/>}
             {isAddNew && <AddNew addNewVisibility={addNewVisibility}/>}
            
             <Row className='d-flex mb-2'>
@@ -80,8 +88,8 @@ function TableData() {
            
            
 
-            <Table bordered hover >
-                <thead>
+            <Table className='table' bordered hover >
+                <thead className='thead-dark'>
                     <tr>
                         <th style={{ width: '5%' }}>#</th>
                         <th style={{ width: '20%' }}>Indonesia</th>
@@ -92,7 +100,7 @@ function TableData() {
                     </tr>
                 </thead>
                 <tbody>
-                    <BySearch data={data} fetchData={fetchData}/>
+                    <BySearch data={data} fetchData={fetchData} handleEditVisibility={handleEditVisibility}/>
                 </tbody>
             </Table>
         </Container>

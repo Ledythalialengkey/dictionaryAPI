@@ -3,7 +3,9 @@ import axios from 'axios';
 import { Button } from "react-bootstrap";
 
 
-const BySearch = ({data,fetchData}) =>{
+const BySearch = ({data,fetchData,handleEditVisibility}) =>{
+  const dirPath = '"http://localhost:3001/api/Contents/audio/"'
+  
   const handleDelete = (id) => {
     axios.delete(`http://localhost:3001/api/contents/delete/${id}`)
       .then(response => {
@@ -18,19 +20,18 @@ const BySearch = ({data,fetchData}) =>{
         <>  
             {data && data.map((item,index)=>(
                     <tr key={index}>
-                        <td>{index+1}</td>
-                        <td>{item.contentFrom}</td>
-                        <td>{item.contentTo}</td>
-                        <td>
+                        <td className='align-middle'>{index+1}</td>
+                        <td className='align-middle'>{item.contentFrom}</td>
+                        <td className='align-middle'>{item.contentTo}</td>
+                        <td className='align-middle'>
                             <audio controls>
-                                <source src="http://localhost:3001/api/Contents/audio/d42e3ab6-ec5c-4f50-8aca-09eda68d2eb5.mp3" type="audio/mpeg" />
-                                Your browser does not support the audio element.
+                                <source src={dirPath.slice(1, -1) +item.contentAudio.slice(1, -1)} type="audio/mpeg" />
                             </audio>
                         </td>
-                        <td>{item.contentDesc}</td>
-                        <td>
+                        <td className='align-middle'>{item.contentDesc}</td>
+                        <td className='align-middle'>
                             {/* id : {item.id   }  */}
-                            <Button className="btn-sm mx-2">Edit</Button>
+                            <Button className="btn-sm mx-2" onClick={handleEditVisibility}>Edit</Button>
                             <Button className="btn-sm btn-danger" onClick={() => handleDelete(item.id)}>delete</Button>
                         </td>
                     </tr>                     

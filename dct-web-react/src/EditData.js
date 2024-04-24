@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 
 
-function EditData({ editVisibility }){
+function EditData({ handleEditVisibility }){
     return(
         <>
             <h4>Edit Data</h4>
@@ -17,10 +17,10 @@ function EditData({ editVisibility }){
                             style={{ width: '150px' }}
                         /></td>
                         <td><Form.Control type='text' placeholder='deskripsi'/></td>
-                        <td><Button onClick={editVisibility} className='btn-sm btn-warning border'>Update</Button></td>
                     </tr>
                 </tbody>
-            </Table>
+                <Button onClick={handleEditVisibility} className='btn-primary border mt-2'>Update</Button>
+            </Table>            
         </>
     );
 }
