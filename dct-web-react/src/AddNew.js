@@ -25,7 +25,7 @@ const AddNew = ({ addNewVisibility }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();        
         try{
-            const response = await axios.post('http://localhost:3001/api/contents', postData)            
+            await axios.post('http://localhost:3001/api/contents', postData)            
         }
         catch(error){
             setError(error)

@@ -26,7 +26,8 @@ namespace dctrestapi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Content>>> GetContents()
         {
-            return await _context.Contents.ToListAsync();
+            var contents = await _context.Contents.OrderBy(c => c.createdAt).ToListAsync();
+            return contents;
         }
         // GET: api/Contents/strings
         [HttpGet("content/{searchString}")]
@@ -59,6 +60,7 @@ namespace dctrestapi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutContent(long id, Content content)
         {
+            Console.WriteLine(content.Id);
             if (id != content.Id)
             {
                 return BadRequest();

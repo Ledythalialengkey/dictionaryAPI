@@ -85,7 +85,7 @@ function EditData({ handleEditVisibility, itemId }){
     const handleSubmit = async (e) => {
         e.preventDefault();        
         try{
-            const response = await axios.put('http://localhost:3001/api/contents/'+itemId, putData)       
+            await axios.put('http://localhost:3001/api/contents/'+itemId, putData)       
         }
         catch(error){
         }
