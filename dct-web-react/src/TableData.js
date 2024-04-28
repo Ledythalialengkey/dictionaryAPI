@@ -15,15 +15,19 @@ import EditData from './EditData'
 
 function TableData() {
     // edit visibility
+    const [itemId, setItemId] = useState(null)
     const [isEdit, setIsEdit] = useState(false);
-    const handleEditVisibility = () => {
-      setIsEdit(!isEdit)
+    const handleEditVisibility = (id) => {
+        setItemId(id)
+        setIsEdit(!isEdit)
+        fetchData()
     }
   
     // add new visibility
     const [isAddNew, setAddNew] = useState(false);
     const addNewVisibility = () => {        
         setAddNew(!isAddNew);       
+        fetchData()
     };
 
     // search 
@@ -75,7 +79,7 @@ function TableData() {
             </Button> <hr/>
            
            
-            {isEdit && <EditData handleEditVisibility={handleEditVisibility}/>}
+            {isEdit && <EditData handleEditVisibility={handleEditVisibility} itemId={itemId} />}
             {isAddNew && <AddNew addNewVisibility={addNewVisibility}/>}
            
             <Row className='d-flex mb-2'>

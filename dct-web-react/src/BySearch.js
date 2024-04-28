@@ -31,7 +31,7 @@ const BySearch = ({data,fetchData,handleEditVisibility}) =>{
                         <td className='align-middle'>{item.contentDesc}</td>
                         <td className='align-middle'>
                             {/* id : {item.id   }  */}
-                            <Button className="btn-sm mx-2" onClick={handleEditVisibility}>Edit</Button>
+                            <Button className="btn-sm mx-2" onClick={() => handleEditVisibility(item.id)} >Edit</Button>
                             <Button className="btn-sm btn-danger" onClick={() => handleDelete(item.id)}>delete</Button>
                         </td>
                     </tr>                     

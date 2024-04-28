@@ -25,7 +25,7 @@ const AddNew = ({ addNewVisibility }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();        
         try{
-            axios.post('http://localhost:3001/api/contents', postData)            
+            const response = await axios.post('http://localhost:3001/api/contents', postData)            
         }
         catch(error){
             setError(error)
@@ -81,20 +81,18 @@ const AddNew = ({ addNewVisibility }) => {
             <Table bordered className='mt-2'>
                 <tbody>
                     <tr className='h-25'>
-                        <td><Form.Control name='contentFrom' type='text' placeholder='indonesia' value={postData.contentFrom} onChange={handleChange} required/></td>
-                        <td><Form.Control name='contentTo' type='text' placeholder='gorap'  value={postData.contentTo}  onChange={handleChange} required/></td>
+                        <td><Form.Control name='contentFrom' type='text' placeholder='indonesia' value={postData.contentFrom !== null ? postData.contentFrom : '' } onChange={handleChange} required/></td>
+                        <td><Form.Control name='contentTo' type='text' placeholder='gorap'  value={postData.contentTo !== null ? postData.contentTo : ''}  onChange={handleChange} required/></td>
                         <td style={{width:'20%'}}>
-                            <Form.Control type='hidden' name='contentAudio' value = {postData.contentAudio} onChange={handleChange}/>
+                            <Form.Control type='hidden' name='contentAudio' value = {postData.contentAudio !==null ? postData.contentAudio : ''} onChange={handleChange}/>
                             <Form.Control type='file' onChange={handleFile}/>
                         </td>
-                        <td><Form.Control name='contentDesc' type='text' placeholder='deskripsi'  value={postData.contentDesc} onChange={handleChange}/></td>
+                        <td><Form.Control name='contentDesc' type='text' placeholder='deskripsi'  value={postData.contentDesc !==null ? postData.contentDesc : ''} onChange={handleChange}/></td>
                     </tr>
                 </tbody>
                 <Button type="submit" className='btn-primary mt-2'>Submit</Button>
             </Table>
             </Form>
-
-            {postData.contentAudio}
             
 
             <pre>

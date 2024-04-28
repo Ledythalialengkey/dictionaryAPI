@@ -6,7 +6,7 @@ function App(){
   return(
     <>
       <Container className='mt-3 p-3'>
-        <Navtop/>
+          <Navtop/>
           <TableData/>
       </Container>
     </>
