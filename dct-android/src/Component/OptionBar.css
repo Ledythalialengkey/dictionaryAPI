@@ -1,0 +1,19 @@
+.box-rounded{
+    background-color: rgb(255, 27, 190);
+    border-radius: 3px;
+    color: white;
+    transition: .3s;
+}
+.box-center{
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    width: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.box-center:hover{
+    background-color: rgb(0, 0, 0);
+    color: azure;
+}
