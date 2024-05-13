@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
 	  <OutputType>Exe</OutputType>
+	   <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
