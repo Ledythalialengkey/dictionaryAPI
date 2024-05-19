@@ -35,7 +35,8 @@ export default function DropDowndct( prop ) {
         prop.setResult(prevResponse => ({
           ...prevResponse,
           contentFrom: data.contentFrom,
-          contentTo: data.contentTo 
+          contentTo: data.contentTo,
+          contentAudio : data.contentAudio 
         }))
         
       })

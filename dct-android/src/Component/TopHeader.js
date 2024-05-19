@@ -8,7 +8,7 @@ export default function TopHeader(props) {
         <Container >
             <Navbar.Brand href="#" style={{color:'#fff', fontWeight:'bolder'}}>
               <i class="bi bi-book-fill "/> &nbsp;
-              Kamus Gorap</Navbar.Brand>
+              Kamus Bahasa Murop</Navbar.Brand>
         </Container>
     </Navbar>
   );

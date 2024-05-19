@@ -6,7 +6,7 @@ function Navtop(){
     return(
     <Navbar className="navbar-light border">
       <Container>
-        <Navbar.Brand href="#home">DCT Dashboard</Navbar.Brand>
+        <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>

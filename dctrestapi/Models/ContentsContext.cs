@@ -7,5 +7,5 @@ public class ContentsContext: DbContext{
     {
     }
     public DbSet<Content> Contents { get; set; } 
-    public DbSet<User> Users { get; set; }
+    public DbSet<Admin> Admins { get; set; }
 }

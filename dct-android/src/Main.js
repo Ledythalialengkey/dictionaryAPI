@@ -7,12 +7,12 @@ import TopHeader from './Component/TopHeader';
 
 export default function Main() {
   const [from, setFrom] = useState('Indonesia')
-  const [to, setTo] = useState('Gorap') 
+  const [to, setTo] = useState('Murop') 
 
   // Switch values
   const switchValues = () => {
-    setFrom((prevFrom) => prevFrom === 'Indonesia' ? 'Gorap' : 'Indonesia');
-    setTo((prevTo) => prevTo === 'Gorap' ? 'Indonesia' : 'Gorap');
+    setFrom((prevFrom) => prevFrom === 'Indonesia' ? 'Murop' : 'Indonesia');
+    setTo((prevTo) => prevTo === 'Murop' ? 'Indonesia' : 'Murop');
   };
 
 

@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen(c =>
 var allowSpec = "myspec";
 builder.Services.AddCors(options => {
     options.AddPolicy(name:allowSpec, policy =>{
-        policy.WithOrigins("http://localhost:3000","http://localhost:3002")
+        policy.WithOrigins("http://localhost:3000","http://localhost:3002","http://192.168.18.8:3000")
         .AllowAnyHeader()
         .AllowAnyMethod();
     });

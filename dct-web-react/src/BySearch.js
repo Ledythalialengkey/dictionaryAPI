@@ -25,7 +25,8 @@ const BySearch = ({data,fetchData,handleEditVisibility}) =>{
                         <td className='align-middle'>{item.contentTo}</td>
                         <td className='align-middle'>
                             <audio controls>
-                                <source src={dirPath.slice(1, -1) +item.contentAudio.slice(1, -1)} type="audio/mpeg" />
+                                {item.contentAudio &&  <source src={dirPath.slice(1, -1) +item.contentAudio.slice(1, -1)} type="audio/mpeg" />
+                            }                            
                             </audio>
                         </td>
                         <td className='align-middle'>{item.contentDesc}</td>
