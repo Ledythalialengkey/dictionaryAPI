@@ -14,7 +14,7 @@ public class FileUploadModel
     public IFormFile? File { get; set; }
 }
 
-public class User{
+public class Admin{
     public long Id { get; set;}
     public string? userName { get; set; }
     public string? userPass { get; set; }

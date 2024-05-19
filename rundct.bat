@@ -1,3 +1,3 @@
 @echo off
-cd C:\dct\dctrestapi\bin\Debug\net8.0
+cd C:\dct\dctrestapi\bin\Release\net8.0
 dctrestapi.exe
